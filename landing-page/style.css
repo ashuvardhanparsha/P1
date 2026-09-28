@@ -1,0 +1,146 @@
+/* Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f8f5f2;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Typography */
+h1 { font-size: 3rem; margin-bottom: 1rem; color: #2c1e16; }
+h2 { font-size: 2rem; text-align: center; margin-bottom: 2rem; color: #2c1e16; }
+p { margin-bottom: 1rem; color: #555; }
+a { text-decoration: none; color: inherit; }
+
+/* Buttons & Transitions */
+.btn-primary {
+    display: inline-block;
+    background-color: #d4a373;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #bc8a5f;
+    transform: translateY(-3px); /* Simple CSS Transform for Viva */
+}
+
+/* Flexbox Navigation */
+header {
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 20px;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #d4a373;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.nav-links a:not(.btn-primary):hover {
+    color: #d4a373;
+    transition: color 0.3s ease;
+}
+
+/* Flexbox Hero Section */
+.hero {
+    background-color: #eaddcf;
+    padding: 100px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 60vh;
+}
+
+.hero-content {
+    max-width: 600px;
+}
+
+/* CSS Grid Features Section */
+.features {
+    padding: 60px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.grid-container {
+    display: grid;
+    /* Responsive Grid: automatically fits columns based on width */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+/* Box Model & Hover Animation */
+.card {
+    background: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+}
+
+.card-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #2c1e16;
+    color: #fff;
+}
+
+/* Responsive Media Queries */
+@media screen and (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .nav-links {
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing Plans | Flexbox UI</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div class="container">
+        <div class="header">
+            <h1>Choose Your Plan</h1>
+            <p>Simple pricing for everyone. Upgrade, downgrade, or cancel anytime.</p>
+        </div>
+
+        <!-- Flexbox Container for Cards -->
+        <div class="pricing-wrapper">
+            
+            <!-- Basic Plan -->
+            <div class="pricing-card">
+                <h2>Basic</h2>
+                <div class="price">$9<span>/mo</span></div>
+                <ul class="features-list">
+                    <li>✔️ 1 User</li>
+                    <li>✔️ 5 Projects</li>
+                    <li>✔️ Community Support</li>
+                    <li class="disabled">❌ Custom Domain</li>
+                </ul>
+                <button class="btn outline">Select Basic</button>
+            </div>
+
+            <!-- Pro Plan (Highlighted) -->
+            <div class="pricing-card highlighted">
+                <div class="badge">Most Popular</div>
+                <h2>Professional</h2>
+                <div class="price">$29<span>/mo</span></div>
+                <ul class="features-list">
+                    <li>✔️ 5 Users</li>
+                    <li>✔️ 50 Projects</li>
+                    <li>✔️ Priority Support</li>
+                    <li>✔️ Custom Domain</li>
+                </ul>
+                <button class="btn filled">Select Pro</button>
+            </div>
+
+            <!-- Enterprise Plan -->
+            <div class="pricing-card">
+                <h2>Enterprise</h2>
+                <div class="price">$99<span>/mo</span></div>
+                <ul class="features-list">
+                    <li>✔️ Unlimited Users</li>
+                    <li>✔️ Unlimited Projects</li>
+                    <li>✔️ 24/7 Phone Support</li>
+                    <li>✔️ Advanced Analytics</li>
+                </ul>
+                <button class="btn outline">Select Enterprise</button>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

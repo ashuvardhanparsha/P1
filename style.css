@@ -1,0 +1,796 @@
+/* =========================================
+   CSS Custom Properties (Variables)
+   ========================================= */
+:root {
+    /* Color Palette - Dark Developer Theme */
+    --bg-main: #0f172a;       /* Slate 900 */
+    --bg-surface: #1e293b;    /* Slate 800 */
+    --bg-surface-hover: #334155; /* Slate 700 */
+    
+    --text-main: #f8fafc;     /* Slate 50 */
+    --text-muted: #94a3b8;    /* Slate 400 */
+    
+    --accent: #38bdf8;        /* Sky 400 */
+    --accent-hover: #0284c7;  /* Sky 600 */
+    
+    /* Syntax highlighting dots */
+    --dot-red: #ef4444;
+    --dot-yellow: #f59e0b;
+    --dot-green: #10b981;
+
+    /* Typography */
+    --font-mono: 'Courier New', Courier, monospace;
+    --font-sans: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    
+    /* Layout */
+    --max-width: 1100px;
+    --section-padding: 80px 20px;
+    
+    /* Animation timing */
+    --transition-fast: 0.2s ease;
+    --transition-medium: 0.3s ease;
+}
+
+/* =========================================
+   Reset & Base Styles
+   ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+}
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--bg-main);
+    color: var(--text-main);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1.2;
+    margin-bottom: 0.5em;
+    font-weight: 700;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color var(--transition-fast);
+}
+
+ul {
+    list-style: none;
+}
+
+.mt-2 { margin-top: 1rem; }
+.mt-3 { margin-top: 2rem; }
+.w-full { width: 100%; }
+
+/* =========================================
+   Typography
+   ========================================= */
+.section-title {
+    margin-bottom: 40px;
+    position: relative;
+    display: inline-block;
+}
+
+.section-title h2 {
+    font-size: 2rem;
+    color: var(--text-main);
+    font-family: var(--font-mono);
+}
+
+.section-title h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background-color: var(--accent);
+}
+
+/* =========================================
+   Layout & Containers
+   ========================================= */
+main {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding-top: 80px; /* Space for fixed navbar */
+}
+
+section {
+    padding: var(--section-padding);
+}
+
+/* =========================================
+   Buttons
+   ========================================= */
+.btn-primary, .btn-secondary, .btn-outline {
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform var(--transition-fast), background-color var(--transition-fast), box-shadow var(--transition-fast);
+    text-align: center;
+    border: none;
+}
+
+.btn-primary {
+    background-color: var(--accent);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 15px -3px rgba(56, 189, 248, 0.3);
+}
+
+.btn-secondary {
+    background-color: var(--bg-surface);
+    color: var(--text-main);
+}
+
+.btn-secondary:hover {
+    background-color: var(--bg-surface-hover);
+    transform: translateY(-3px);
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: var(--accent);
+    border: 2px solid var(--accent);
+    padding: 8px 20px;
+}
+
+.btn-outline:hover {
+    background-color: rgba(56, 189, 248, 0.1);
+}
+
+/* =========================================
+   1. Navigation Bar (Flexbox, Sticky)
+   ========================================= */
+header {
+    background-color: rgba(15, 23, 42, 0.95); /* Slightly transparent */
+    backdrop-filter: blur(10px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    border-bottom: 1px solid var(--bg-surface);
+}
+
+.navbar {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo a {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--text-main);
+    letter-spacing: 2px;
+}
+
+.logo a:hover {
+    color: var(--accent);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.nav-links li a {
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.nav-links li a:not(.btn-outline):hover {
+    color: var(--accent);
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-main);
+    border-radius: 2px;
+}
+
+/* =========================================
+   2. Hero Section (Flexbox, CSS Animations)
+   ========================================= */
+.hero {
+    min-height: calc(100vh - 80px); /* Fill screen minus navbar */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.hero-content {
+    background-color: var(--bg-surface);
+    border-radius: 12px;
+    padding: 40px;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    /* Animation entry */
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.terminal-header {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.dot.red { background-color: var(--dot-red); }
+.dot.yellow { background-color: var(--dot-yellow); }
+.dot.green { background-color: var(--dot-green); }
+
+.terminal-body {
+    font-family: var(--font-mono);
+}
+
+.cmd {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}
+
+.cmd span {
+    color: var(--accent);
+}
+
+.typing-effect {
+    font-size: 3rem;
+    color: var(--text-main);
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 3px solid var(--accent);
+    /* Typing animation */
+    animation: typing 2s steps(20, end), blink-caret .75s step-end infinite;
+}
+
+.role {
+    font-size: 1.5rem;
+    color: var(--dot-green);
+    font-weight: normal;
+}
+
+.building {
+    font-size: 1.1rem;
+    color: var(--text-main);
+}
+
+.hero-cta {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+}
+
+/* =========================================
+   3. About Section (Flexbox)
+   ========================================= */
+.about-content {
+    display: flex;
+    gap: 50px;
+    align-items: center;
+}
+
+.about-text {
+    flex: 1;
+}
+
+.about-text p {
+    color: var(--text-muted);
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+.about-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.image-wrapper {
+    position: relative;
+}
+
+.profile-box {
+    width: 250px;
+    height: 250px;
+    background: linear-gradient(135deg, var(--bg-surface), var(--bg-surface-hover));
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    border: 2px solid var(--accent);
+    position: relative;
+    z-index: 1;
+    transition: transform var(--transition-medium);
+}
+
+/* Decorative background box */
+.image-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 250px;
+    height: 250px;
+    border: 2px solid var(--text-muted);
+    border-radius: 20px;
+    z-index: 0;
+    transition: transform var(--transition-medium);
+}
+
+.image-wrapper:hover .profile-box {
+    transform: translate(-10px, -10px);
+}
+.image-wrapper:hover::after {
+    transform: translate(10px, 10px);
+}
+
+/* =========================================
+   4. Skills Section (CSS Grid, Bento Layout)
+   ========================================= */
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.bento-item {
+    background-color: var(--bg-surface);
+    padding: 30px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: transform var(--transition-medium), box-shadow var(--transition-medium);
+}
+
+.bento-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    border-color: rgba(56, 189, 248, 0.2);
+}
+
+.bento-item.span-2 {
+    grid-column: span 2;
+}
+
+.bento-item h3 {
+    color: var(--text-main);
+    margin-bottom: 20px;
+    font-family: var(--font-mono);
+}
+
+.bento-item p {
+    color: var(--text-muted);
+}
+
+.pill-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.pill {
+    background-color: var(--bg-main);
+    color: var(--accent);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+/* =========================================
+   5. Projects Section (CSS Grid)
+   ========================================= */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.project-card {
+    background-color: var(--bg-surface);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: transform var(--transition-medium);
+    display: flex;
+    flex-direction: column;
+}
+
+.project-card:hover {
+    transform: translateY(-8px);
+}
+
+.project-img-placeholder {
+    height: 200px;
+    background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+}
+
+.project-info {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* Pushes links to the bottom */
+}
+
+.project-info h3 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+}
+
+.project-info p {
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+    flex-grow: 1;
+}
+
+.tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 20px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--dot-green);
+}
+
+.project-links {
+    display: flex;
+    gap: 15px;
+}
+
+.project-link {
+    font-size: 0.9rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.project-link:hover {
+    color: var(--accent);
+}
+
+.project-link::after {
+    content: '→';
+    transition: transform var(--transition-fast);
+}
+
+.project-link:hover::after {
+    transform: translateX(3px);
+}
+
+/* =========================================
+   6. Experience / Education (Flexbox, Positioning)
+   ========================================= */
+.timeline {
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 20px; /* Line position */
+    height: 100%;
+    width: 2px;
+    background-color: var(--bg-surface-hover);
+}
+
+.timeline-item {
+    position: relative;
+    padding-left: 60px;
+    margin-bottom: 40px;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: 13px; /* Center dot on line */
+    top: 5px;
+    width: 16px;
+    height: 16px;
+    background-color: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 0 4px var(--bg-main);
+}
+
+.timeline-content {
+    background-color: var(--bg-surface);
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.timeline-content h3 {
+    margin-bottom: 5px;
+}
+
+.timeline-content h4 {
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.timeline-date {
+    display: inline-block;
+    padding: 4px 10px;
+    background-color: rgba(56, 189, 248, 0.1);
+    color: var(--accent);
+    border-radius: 4px;
+    font-size: 0.85rem;
+    font-family: var(--font-mono);
+    margin-bottom: 15px;
+}
+
+.timeline-content p {
+    color: var(--text-muted);
+}
+
+/* =========================================
+   7. Contact Section (Flexbox / Form styling)
+   ========================================= */
+.contact-container {
+    display: flex;
+    gap: 60px;
+    background-color: var(--bg-surface);
+    padding: 50px;
+    border-radius: 16px;
+}
+
+.contact-info {
+    flex: 1;
+}
+
+.contact-info h3 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+.contact-info p {
+    color: var(--text-muted);
+}
+
+.social-links {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.social-link {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--font-mono);
+}
+
+.social-link::before {
+    content: '>';
+    margin-right: 10px;
+    color: var(--accent);
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all var(--transition-fast);
+}
+
+.social-link:hover::before {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.social-link:hover {
+    color: var(--accent);
+}
+
+.contact-form {
+    flex: 1.5;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--text-muted);
+}
+
+.form-group input, 
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    background-color: var(--bg-main);
+    border: 1px solid var(--bg-surface-hover);
+    border-radius: 8px;
+    color: var(--text-main);
+    font-family: var(--font-sans);
+    transition: border-color var(--transition-fast);
+}
+
+.form-group input:focus, 
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+}
+
+/* =========================================
+   8. Footer
+   ========================================= */
+footer {
+    text-align: center;
+    padding: 40px 20px;
+    border-top: 1px solid var(--bg-surface);
+    margin-top: 50px;
+}
+
+.footer-content p {
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+}
+
+.footer-content .copyright {
+    margin-top: 10px;
+    font-size: 0.8rem;
+    opacity: 0.7;
+}
+
+/* =========================================
+   9. Animations (Keyframes)
+   ========================================= */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: var(--accent); }
+}
+
+/* =========================================
+   10. Responsive Design (Media Queries)
+   ========================================= */
+
+/* Tablet and below */
+@media screen and (max-width: 900px) {
+    .bento-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .bento-item.span-2 {
+        grid-column: span 2;
+    }
+    
+    .about-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .contact-container {
+        flex-direction: column;
+    }
+    
+    .section-title h2::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .section-title {
+        display: block;
+        text-align: center;
+    }
+}
+
+/* Mobile */
+@media screen and (max-width: 768px) {
+    :root {
+        --section-padding: 60px 20px;
+    }
+    
+    .nav-links {
+        display: none; /* In a real project with JS, you'd toggle this. Using display:none for pure CSS basic mobile */
+    }
+    
+    .hamburger {
+        display: flex; /* Show hamburger icon */
+    }
+    
+    .hero-content {
+        padding: 25px;
+    }
+    
+    .typing-effect {
+        font-size: 2rem;
+    }
+    
+    .bento-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .bento-item.span-2 {
+        grid-column: span 1;
+    }
+    
+    .image-wrapper::after {
+        display: none; /* Hide decorative box on mobile */
+    }
+    
+    .timeline::before {
+        left: 15px;
+    }
+    
+    .timeline-dot {
+        left: 8px;
+    }
+    
+    .timeline-item {
+        padding-left: 45px;
+    }
+    
+    .hero-cta {
+        flex-direction: column;
+    }
+}
